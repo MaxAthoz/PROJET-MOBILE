@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="selectTypePrompt">Choisir un type</string>
+    <string-array name="selectType">
+        <item>Texte</item>
+        <item>Booléen</item>
+        <item>Nombre</item>
+        <item>Date</item>
+        <item>Liste</item>
+    </string-array>
 </resources>

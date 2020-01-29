@@ -5,13 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListeEspace">
+
     <TextView
-        android:id="@+id/titreHistorique"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="historique"
+        android:id="@+id/titre_historique"
+        android:layout_width="408dp"
+        android:layout_height="52dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="HISTORIQUE"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.133" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
