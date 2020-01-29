@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_dashboard"
+        app:showAsAction="never"
+        android:title="Dashboard"/>
+
+    <item
+        android:id="@+id/action_liste_espaces"
+        app:showAsAction="never"
+        android:title="Liste des espaces"/>
+
+    <item
+        android:id="@+id/action_calendrier"
+        app:showAsAction="never"
+        android:title="Calendrier"/>
+
+    <item
+        android:id="@+id/action_historique"
+        app:showAsAction="never"
+        android:title="Historique"/>
+
+    <item
+        android:id="@+id/action_add_espace"
+        app:showAsAction="never"
+        android:title="Ajout d'un espace"/>
+
+</menu>
