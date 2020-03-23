@@ -1,6 +1,8 @@
 package com.example.myapplication.Entities;
 
-public class Indicateur {
+import java.io.Serializable;
+
+public class Indicateur implements Serializable {
 
     private Integer id;
     private String nomIndicateur;
