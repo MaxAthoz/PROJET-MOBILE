@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -27,11 +28,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListeEspace extends AppCompatActivity {
+public class ListeEspace extends AppCompatActivity implements View.OnClickListener{
 
     private List<Espace> mesEspaces;
     private User loggedUser;
-    class JSONAsyncTask extends AsyncTask<String, Void, JSONObject> {
+    private Button btnAjoutEspace;
+
+    class JSONAsyncTask extends AsyncTask<String, Void, JSONObject>{
         // Params, Progress, Result
 
         @Override
@@ -94,11 +97,26 @@ public class ListeEspace extends AppCompatActivity {
         TextView textLoggedUser = (TextView) findViewById(R.id.loggedUser);
         textLoggedUser.setText(loggedUser.getLogin());
 
+        btnAjoutEspace = (Button)findViewById(R.id.button_ajout_espace2);
+        btnAjoutEspace.setOnClickListener(this);
+
         gs = (GlobalState) getApplication();
         mesEspaces = new ArrayList<>();
         ListeEspace.JSONAsyncTask jsAT = new JSONAsyncTask();
         jsAT.execute("users-espaces/"+loggedUser.getId());
     }
+
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.button_ajout_espace2:
+                Intent versAjoutEspace = new Intent(this, AjoutEspace.class);
+                versAjoutEspace.putExtra("User",loggedUser);
+                startActivity(versAjoutEspace);
+                break;
+        }
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // affichage des boutons du menu

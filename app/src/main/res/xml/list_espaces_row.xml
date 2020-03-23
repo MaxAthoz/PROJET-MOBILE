@@ -30,8 +30,7 @@
         android:id="@+id/textViewColActionEdit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:textSize="26sp"
+        android:textSize="13sp"
         android:layout_weight="1"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -40,8 +39,7 @@
         android:id="@+id/textViewColActionDelete"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:textSize="26sp"
+        android:textSize="13sp"
         android:layout_weight="1"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceSmall" />

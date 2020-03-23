@@ -31,7 +31,7 @@ public class GlobalState extends Application {
 
     private static final String CAT = "IME4";
     public SharedPreferences settings;
-    private final String URL = "http://192.168.1.80/api/";
+    private final String URL = "http://192.168.43.71/api/";
 
     @Override
     public void onCreate() {
