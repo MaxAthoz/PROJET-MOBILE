@@ -40,18 +40,16 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         protected JSONObject doInBackground(String... qs) {
             String res = null;
             try {
-                res = MainActivity.this.gs.sendGet(qs[0]);
+                System.out.println("requete GET USER");
+                res = MainActivity.this.gs.requete(qs[0],"GET",null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             try {
                 JSONArray jsonArray = new JSONArray(res);
-                System.out.println("jsonArray : " + jsonArray);
-                if( jsonArray != null && jsonArray.length() > 0 ) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(0);
-                    return jsonObject;
-                }
-                return null;
+                System.out.println("Resultat JSON array : "+ jsonArray);
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                return jsonObject;
             } catch (JSONException e) {
                 e.printStackTrace();
             }

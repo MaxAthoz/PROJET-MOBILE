@@ -10,12 +10,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Entities.User;
+
 import java.util.Calendar;
 import java.util.Date;
 
 public class Calendrier extends AppCompatActivity {
     private static final String CAT = "IME4";
 
+    private User loggedUser;
 
     public void alerter(String s) {
 
@@ -28,6 +31,7 @@ public class Calendrier extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendrier);
+        loggedUser = (User) getIntent().getSerializableExtra("User");
 
         final CalendarView calendarView = findViewById(R.id.calendarView);
         Date date = new Date();
@@ -60,18 +64,22 @@ public class Calendrier extends AppCompatActivity {
         switch(id) {
             case R.id.action_dashboard :
                 Intent versDashboard = new Intent(this, Dashboard.class);
+                versDashboard.putExtra("User",loggedUser);
                 startActivity(versDashboard);
                 break;
             case R.id.action_liste_espaces :
                 Intent versListeEspace = new Intent(this, ListeEspace.class);
+                versListeEspace.putExtra("User",loggedUser);
                 startActivity(versListeEspace);
                 break;
             case R.id.action_add_espace :
                 Intent versAjouterEspace = new Intent(this, AjoutEspace.class);
+                versAjouterEspace.putExtra("User",loggedUser);
                 startActivity(versAjouterEspace);
                 break;
             case R.id.action_historique :
                 Intent versHistorique = new Intent(this, Historique.class);
+                versHistorique.putExtra("User",loggedUser);
                 startActivity(versHistorique);
                 break;
             case R.id.action_calendrier :

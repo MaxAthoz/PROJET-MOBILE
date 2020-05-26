@@ -21,6 +21,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -120,29 +121,26 @@ public class GlobalState extends Application {
     }
 
 
-    public String sendPost(String requete) throws Exception {
+    public String requete(String requete, String type, JSONObject reqBody) throws Exception {
         if (requete != null) {
-            String url = "http://10.0.2.2:8888/api/users";
-            URL obj = new URL(url);
+            URL obj = new URL(URL + requete);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod(type);
+            con.setRequestProperty("requete", requete);
 
-            //add reuqest header
-            con.setRequestMethod("POST");
-            con.setRequestProperty("inscription", requete);
-            //con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            if(type.equals("POST") || type.equals("DELETE") || type.equals("PUT")){
+                con.setDoOutput(true);
+            }
 
-            String urlParameters = requete;
-
-            //Send post request
-            con.setDoOutput(true);
-            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            wr.writeBytes(urlParameters);
-            wr.flush();
-            wr.close();
+            //PUT
+            if (reqBody != null){
+                OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
+                wr.write(reqBody.toString());
+                wr.flush();
+            }
 
             int responseCode = con.getResponseCode();
-            System.out.println("\nSending 'POST' request to URL : " + URL);
-            System.out.println("Post parameters : " + urlParameters);
+            System.out.println("\nSending '"+type+"' request to URL : " + obj);
             System.out.println("Response Code : " + responseCode);
 
             InputStream in = null;
@@ -154,37 +152,5 @@ public class GlobalState extends Application {
             return txtReponse;
         }
         return "";
-    }
-
-
-
-    public String sendGet(String requete) throws Exception {
-        if (requete != null) {
-
-            String urlData = URL + requete;
-
-            URL obj = new URL(urlData);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-            //optional default is GET
-            con.setRequestMethod("GET");
-
-            //add request header
-            con.setRequestProperty("connexion", requete);
-
-            int responseCode = con.getResponseCode();
-            System.out.println("\nSending 'GET' request to URL : " + urlData);
-            System.out.println("Response Code : " + responseCode);
-
-            InputStream in = null;
-            in = new BufferedInputStream(con.getInputStream());
-            String txtReponse = convertStreamToString(in);
-            con.disconnect();
-            System.out.println(txtReponse);
-            return txtReponse;
-
-        }
-        return "";
-
     }
 }

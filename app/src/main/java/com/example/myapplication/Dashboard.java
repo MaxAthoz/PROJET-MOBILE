@@ -9,17 +9,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.Entities.User;
+
 public class Dashboard extends AppCompatActivity implements View.OnClickListener{
 
     private Button btnListeEspace;
     private Button btnAjoutEspace;
     private Button btnHistorique;
     private Button btnCalendrier;
+    private User loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        loggedUser = (User) getIntent().getSerializableExtra("User");
         btnListeEspace = (Button)findViewById(R.id.button_list_espaces);
         btnListeEspace.setOnClickListener(this);
         btnAjoutEspace = (Button)findViewById(R.id.button_ajout_espace);
@@ -45,18 +49,22 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.action_liste_espaces :
                 Intent versListeEspace = new Intent(this, ListeEspace.class);
+                versListeEspace.putExtra("User",loggedUser);
                 startActivity(versListeEspace);
                 break;
             case R.id.action_add_espace :
                 Intent versAjoutEspace = new Intent(this, AjoutEspace.class);
+                versAjoutEspace.putExtra("User",loggedUser);
                 startActivity(versAjoutEspace);
                 break;
             case R.id.action_historique :
                 Intent versHistorique = new Intent(this, Historique.class);
+                versHistorique.putExtra("User",loggedUser);
                 startActivity(versHistorique);
                 break;
             case R.id.action_calendrier :
                 Intent versCalendrier = new Intent(this, Calendrier.class);
+                versCalendrier.putExtra("User",loggedUser);
                 startActivity(versCalendrier);
                 break;
         }
@@ -69,18 +77,22 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         switch(v.getId()){
             case R.id.button_list_espaces:
                 Intent versListeEspace = new Intent(this, ListeEspace.class);
+                versListeEspace.putExtra("User",loggedUser);
                 startActivity(versListeEspace);
                 break;
             case R.id.button_ajout_espace :
                 Intent versAjoutEspace = new Intent(this, AjoutEspace.class);
+                versAjoutEspace.putExtra("User",loggedUser);
                 startActivity(versAjoutEspace);
                 break;
             case R.id.button_historique :
                 Intent versHistorique = new Intent(this, Historique.class);
+                versHistorique.putExtra("User",loggedUser);
                 startActivity(versHistorique);
                 break;
             case R.id.button_calendrier :
                 Intent versCalendrier = new Intent(this, Calendrier.class);
+                versCalendrier.putExtra("User",loggedUser);
                 startActivity(versCalendrier);
                 break;
         }

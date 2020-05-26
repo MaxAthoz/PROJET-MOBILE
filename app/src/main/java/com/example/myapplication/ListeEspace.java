@@ -46,7 +46,7 @@ public class ListeEspace extends AppCompatActivity implements View.OnClickListen
         protected JSONObject doInBackground(String... qs) {
             String res = null;
             try {
-                res = ListeEspace.this.gs.sendGet(qs[0]);
+                res = ListeEspace.this.gs.requete(qs[0],"GET",null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -130,20 +130,24 @@ public class ListeEspace extends AppCompatActivity implements View.OnClickListen
         switch(id) {
             case R.id.action_dashboard :
                 Intent versDashboard = new Intent(this, Dashboard.class);
+                versDashboard.putExtra("User",loggedUser);
                 startActivity(versDashboard);
                 break;
             case R.id.action_liste_espaces :
                 break;
             case R.id.action_add_espace :
                 Intent versAjouterEspace = new Intent(this, AjoutEspace.class);
+                versAjouterEspace.putExtra("User",loggedUser);
                 startActivity(versAjouterEspace);
                 break;
             case R.id.action_historique :
                 Intent versHistorique = new Intent(this, Historique.class);
+                versHistorique.putExtra("User",loggedUser);
                 startActivity(versHistorique);
                 break;
             case R.id.action_calendrier :
                 Intent versCalendrier = new Intent(this, Calendrier.class);
+                versCalendrier.putExtra("User",loggedUser);
                 startActivity(versCalendrier);
                 break;
         }

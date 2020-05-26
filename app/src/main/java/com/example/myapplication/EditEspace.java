@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.database.MatrixCursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -33,6 +35,12 @@ public class EditEspace extends AppCompatActivity implements View.OnClickListene
     private User user ;
     private List<Indicateur> mesIndicateurs;
     private Button btnAjoutIndicateur;
+    private Button btnSuppEspace;
+    private Button btnSaveEspace;
+    private EditText nomEspace;
+
+    private String httpType;
+    private JSONObject reqBody;
 
     class JSONAsyncTask extends AsyncTask<String, Void, JSONObject> {
         // Params, Progress, Result
@@ -46,13 +54,20 @@ public class EditEspace extends AppCompatActivity implements View.OnClickListene
         protected JSONObject doInBackground(String... qs) {
             String res = null;
             try {
-                res = EditEspace.this.gs.sendGet(qs[0]);
+                res = EditEspace.this.gs.requete(qs[0],httpType,reqBody);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             try {
-                JSONObject jsonObject = new JSONObject(res);
-                return jsonObject;
+                JSONObject json;
+                if(espace == null){
+                    JSONArray jsonTab = new JSONArray(res);
+                    json = jsonTab.getJSONObject(0);
+                }
+                else{
+                    json = new JSONObject(res);
+                }
+                return json;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -86,6 +101,16 @@ public class EditEspace extends AppCompatActivity implements View.OnClickListene
                     e.printStackTrace();
                 }
             }
+            if(httpType == "DELETE"){
+                Intent versListe = new Intent(getApplicationContext(), ListeEspace.class);
+                versListe.putExtra("User",user);
+                startActivity(versListe);
+            }
+            if(httpType == "PUT"){
+                Intent versListe = new Intent(getApplicationContext(), ListeEspace.class);
+                versListe.putExtra("User",user);
+                startActivity(versListe);
+            }
         }
     }
     GlobalState gs;
@@ -99,21 +124,47 @@ public class EditEspace extends AppCompatActivity implements View.OnClickListene
 
         btnAjoutIndicateur = (Button)findViewById(R.id.button_ajout_indicateur);
         btnAjoutIndicateur.setOnClickListener(this);
+        btnSuppEspace = (Button)findViewById(R.id.button_suppression_espace);
+        btnSuppEspace.setOnClickListener(this);
+        btnSaveEspace = (Button)findViewById(R.id.button_edit_nom_espace);
+        btnSaveEspace.setOnClickListener(this);
 
-
+        nomEspace = (EditText) findViewById(R.id.editTextNomEspace);
+        nomEspace.setText(espace.getNomEspace());
         gs = (GlobalState) getApplication();
         mesIndicateurs = new ArrayList<>();
         EditEspace.JSONAsyncTask jsAT = new JSONAsyncTask();
+        httpType="GET";
+        reqBody=null;
         jsAT.execute("espaces-indicateurs/"+espace.getId());
     }
 
     public void onClick(View v) {
+        EditEspace.JSONAsyncTask jsAT = new JSONAsyncTask();
         switch(v.getId()){
             case R.id.button_ajout_indicateur:
                 Intent versAjoutIndicateur = new Intent(this, AjoutIndicateur.class);
                 versAjoutIndicateur.putExtra("User",user);
                 versAjoutIndicateur.putExtra("Espace",espace);
                 startActivity(versAjoutIndicateur);
+                break;
+            case R.id.button_suppression_espace:
+                httpType="DELETE";
+                reqBody=null;
+                jsAT.execute("espaces/"+espace.getId());
+                break;
+            case R.id.button_edit_nom_espace:
+                if(nomEspace.getText().toString() != espace.getNomEspace()) {
+                    httpType = "PUT";
+                    reqBody = null;
+                    reqBody = new JSONObject();
+                    try {
+                        reqBody.put("nomEspace", nomEspace.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    jsAT.execute("espaces/" + espace.getId());
+                }
                 break;
         }
 
@@ -176,4 +227,43 @@ public class EditEspace extends AppCompatActivity implements View.OnClickListene
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // affichage des boutons du menu
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id) {
+            case R.id.action_dashboard :
+                Intent versDashboard = new Intent(this, Dashboard.class);
+                versDashboard.putExtra("User",user);
+                startActivity(versDashboard);
+                break;
+            case R.id.action_liste_espaces :
+                Intent versListeEspace = new Intent(this, ListeEspace.class);
+                versListeEspace.putExtra("User",user);
+                startActivity(versListeEspace);
+                break;
+            case R.id.action_add_espace :
+                Intent versAjoutEspace = new Intent(this, AjoutEspace.class);
+                versAjoutEspace.putExtra("User",user);
+                startActivity(versAjoutEspace);
+                break;
+            case R.id.action_historique :
+                Intent versHistorique = new Intent(this, Historique.class);
+                versHistorique.putExtra("User",user);
+                startActivity(versHistorique);
+                break;
+            case R.id.action_calendrier :
+                Intent versCalendrier = new Intent(this, Calendrier.class);
+                versCalendrier.putExtra("User",user);
+                startActivity(versCalendrier);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
