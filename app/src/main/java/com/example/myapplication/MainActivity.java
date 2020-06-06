@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 
                 user = gson.fromJson(s, User.class);
 
-                Intent versListeEspace= new Intent(gs,ListeEspace.class);
-                versListeEspace.putExtra("User",user);
-                startActivity(versListeEspace);
+                Intent versCalendrier= new Intent(gs,Calendrier.class);
+                versCalendrier.putExtra("User",user);
+                startActivity(versCalendrier);
 
             }
             else

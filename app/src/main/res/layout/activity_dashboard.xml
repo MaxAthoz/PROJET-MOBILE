@@ -50,7 +50,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginBottom="128dp"
-        android:text="Consulter mes activités"
+        android:text="Ajouter des activités"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.414"

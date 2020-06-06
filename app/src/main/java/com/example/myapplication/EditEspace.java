@@ -209,6 +209,7 @@ public class EditEspace extends AppCompatActivity implements View.OnClickListene
         @Override
         public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
             // faites ici ce que vous voulez
+            if(position == 0) return;
             Intent versEditIndicateur= new Intent(gs,EditIndicateur.class);
             versEditIndicateur.putExtra("User",user);
             versEditIndicateur.putExtra("Espace",espace);

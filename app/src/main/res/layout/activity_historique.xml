@@ -21,4 +21,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.133" />
 
+    <ScrollView
+        android:layout_width="377dp"
+        android:layout_height="520dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titre_historique"
+        app:layout_constraintVertical_bias="0.115">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutHistorique"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:showDividers="middle"
+            android:divider="@drawable/empty_divider"/>
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
