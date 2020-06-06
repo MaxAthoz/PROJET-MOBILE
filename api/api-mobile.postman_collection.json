@@ -1,0 +1,644 @@
+{
+	"info": {
+		"_postman_id": "eedcb96b-1134-4bd2-9c15-a7a8e2473639",
+		"name": "api-mobile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Récuperes la liste de tout les utilisateurs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/users/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recupérer un utiliateur grâce à son ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/users/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Récupérer les espaces associés à un utilisateur",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/users-espaces/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users-espaces",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Supprimer l'utilisateur en passant son ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/users/?id=7",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Création d'un utilisateur en passant son Nom,Prénom,pseudo(login) et mot de passe(passwd)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost/api/users/?nom=SZTUREMSKI&prenom=jean&login=jean&passwd=jean",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "nom",
+									"value": "SZTUREMSKI"
+								},
+								{
+									"key": "prenom",
+									"value": "jean"
+								},
+								{
+									"key": "login",
+									"value": "jean"
+								},
+								{
+									"key": "passwd",
+									"value": "jean"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "espaces",
+			"item": [
+				{
+					"name": "Récupérer la liste des espaces",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/espaces",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"espaces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Récupérer l'espace grâce à son ID Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/espaces/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"espaces",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Récupérer les indicateurs associés à un espace",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/espaces-indicateurs/5",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"espaces-indicateurs",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Supprimer en cascade un espace en passant son ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/espaces/6",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"espaces",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Création d'un espace en passant son nom et l'ID de l'utilisateur",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost/api/espaces/?nomEspace=\"Nouvel Espace Max\"&idUser=1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"espaces",
+								""
+							],
+							"query": [
+								{
+									"key": "nomEspace",
+									"value": "\"Nouvel Espace Max\""
+								},
+								{
+									"key": "idUser",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modifier le nom d'un espace en passant les modifications dans le body",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nomEspace\":\"Velo\"\n}\t"
+						},
+						"url": {
+							"raw": "localhost/api/espaces/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"espaces",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "indicateurs",
+			"item": [
+				{
+					"name": "Récupération de la liste des indicateurs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/indicateurs/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"indicateurs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Récupération d'un indicateur grâce à son ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/indicateurs/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"indicateurs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Suppression d'un indicateur en passant son ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/indicateurs/12",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"indicateurs",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Création d'un indicateur en passant l'ID de son espace correspondant ainsi que son type , sa valeur initiale et son Nom",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost/api/indicateurs/?idEspace=1&type=number&valeurInit=0&nomIndicateur=Nouvel indicateur",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"indicateurs",
+								""
+							],
+							"query": [
+								{
+									"key": "idEspace",
+									"value": "1"
+								},
+								{
+									"key": "type",
+									"value": "number"
+								},
+								{
+									"key": "valeurInit",
+									"value": "0"
+								},
+								{
+									"key": "nomIndicateur",
+									"value": "Nouvel indicateur"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modifier un indicateur en passant dans le body les différents colonnes avec leurs valeurs",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idEspace\":1,\n\t\"type\":\"number\",\n\t\"valeurInit\":\"0\",\n\t\"nomIndicateur\":\"Nombre de kilometres\"\n}\t"
+						},
+						"url": {
+							"raw": "localhost/api/indicateurs/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"indicateurs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "activites",
+			"item": [
+				{
+					"name": "Récupérer la liste des activités",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/activites/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"activites",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Récupérer une activité grâce à son ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/activites/55",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"activites",
+								"55"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Suppression d'une activité en passant l'id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/activites/60",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"activites",
+								"60"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Création d'une activité en passant l'ID de l'espace,l'ID de l'indicateur, la date ainsi que la valeur de l'indicateur",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost/api/activites/?idEspace=1&idIndicateur=1&valeur=23&date=2020-05-02",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"activites",
+								""
+							],
+							"query": [
+								{
+									"key": "idEspace",
+									"value": "1"
+								},
+								{
+									"key": "idIndicateur",
+									"value": "1"
+								},
+								{
+									"key": "valeur",
+									"value": "23"
+								},
+								{
+									"key": "date",
+									"value": "2020-05-02"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modification d'une activité",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"valeur\": \"1\",\n\t\"idEspace\": \"1\",\n\t\"idIndicateur\": \"1\",\n\t\"date\": \"2020-05-24\"\n}\t"
+						},
+						"url": {
+							"raw": "localhost/api/activites/55",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"activites",
+								"55"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "view",
+			"item": [
+				{
+					"name": "Recupération de la view qui regroupe nos espaces et nos indicateurs ainsi que leurs valeurs afin de les afficher.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/views/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"views",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Suppression d'une activité en passant l'ID de l'espace ainsi que la date",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/views/1/2020-05-31",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"views",
+								"1",
+								"2020-05-31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Récupérer dans la view en fonction de la date et l'ID de l'utilisateur connecté",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/views/1/2020-05-24",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"views",
+								"1",
+								"2020-05-24"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

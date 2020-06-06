@@ -1,0 +1,21 @@
+RewriteEngine On # Activer le module Rewrite
+
+RewriteRule ^users/?$ users.php 
+RewriteRule ^users+/(\d+)$ users.php?id=$1
+RewriteRule ^users+/(.*)/(.*)$ users.php?login=$1&passwd=$2
+RewriteRule ^users-espaces+/(\d+)$ users.php?idUser=$1
+
+RewriteRule ^indicateurs/?$ indicateurs.php 
+RewriteRule ^indicateurs+/(\d+)$ indicateurs.php?id=$1
+
+RewriteRule ^espaces/?$ espaces.php 
+RewriteRule ^espaces+/(\d+)$ espaces.php?id=$1
+RewriteRule ^espaces-indicateurs+/(\d+)$ espaces.php?idEspace=$1
+
+RewriteRule ^activites/?$ activites.php 
+RewriteRule ^activites+/(\d+)$ activites.php?id=$1
+RewriteRule ^activites+/(\d+)/indicateurs$ activites.php?idActivite=$1
+
+RewriteRule ^views/?$ view.php
+RewriteRule ^views+/(\d+)$ view.php?idUser=$1
+RewriteRule ^views+/(\d+)/(\d+)-(\d+)-(\d+)$ view.php?id=$1&annee=$2&mois=$3&jour=$4
